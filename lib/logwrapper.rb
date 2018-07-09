@@ -3,7 +3,8 @@
 # require "logwrapper/version"
 # require "logwrapper/multi_file_logger"
 
-  load 'lib/logwrapper/multi_file_logger.rb'
+load 'lib/logwrapper/multi_file_logger.rb'
+load 'lib/logwrapper/version.rb'
 
 module Logwrapper
   # Your code goes here...

@@ -11,8 +11,8 @@ desc 'Touch this thing'
 task :putter do
   # load 'logwrapper.rb'
   puts "-----------------"
-
-  # Dir["#{File.dirname(__FILE__)}/lib/**/*.rb"].each { |f| load(f) }
+  puts "Working from #{Dir.pwd} ..."
+  Dir["#{File.dirname(__FILE__)}/lib/**/*.rb"].each { |f| puts load(f) }
   # puts Dir.pwd
 
   # Logwrapper.hi

@@ -1,5 +1,6 @@
 require "test_helper"
 load "../logwrapper/lib/logwrapper/multi_file_logger.rb"
+load "../logwrapper/lib/logwrapper/directory_handler.rb"
 
 class LogwrapperTest < Minitest::Test
   def test_that_it_has_a_version_number
@@ -27,21 +28,21 @@ class LogwrapperTest < Minitest::Test
   end
   
   def test_creates_log_file_if_not_exists
-    blah = MultiFileLogger.new(the_root: 'log', folder: 'benchmarks')  # setup directory for the files
+    blah = DirectoryHandler.create_dir('benchmarks')  # setup directory for the files
     # create the file in question
     # return file to be used by other obj
   end
 
   def test_creates_directory_if_not_existing
     directory = 'tmp/benchmarks'
-    MultiFileLogger.folder_handler directory
+    blah = DirectoryHandler.create_dir(directory) 
     directory = 'log/' << directory
     assert Dir.exists? "#{directory}"
     FileUtils.remove_dir "log/tmp"
   end
   
   def test_creates_default_directory
-    MultiFileLogger.folder_handler 
+    DirectoryHandler.create_dir('benchmarks')
     assert Dir.exists? 'log/benchmarks'
   end  
   
@@ -50,7 +51,6 @@ class LogwrapperTest < Minitest::Test
   end
   
   def test_writes_to_logfile
-    
   end
 
   

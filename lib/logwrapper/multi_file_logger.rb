@@ -25,19 +25,19 @@ class MultiFileLogger
   # end
   
   def self.log_handler(the_method)
-    the_method = MultiFileLogger.method(:logger_test)
+    # the_method = MultiFileLogger.method(:logger_test)
     log_name = FileNamer.discover_log_name(the_method)
     file = File.join('log', "#{log_name}.log")
-    log = Logger.new(file)
     check_file_header(file)  
+    log = Logger.new(file)
     # TODO - need to close these logs sometime
     #
   end
   
   def self.check_file_header(file)
-    f = File.open(file, File::RDWR)
-    f << file if f.readlines.count < 2
-    f.close
+    File.open(file, "a+") do |f|
+      f << file if f.readlines.count < 2
+    end
   end
   
   # def self.logger_test()

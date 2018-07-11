@@ -5,9 +5,8 @@ require 'fileutils'
     # log file naming
     # header information handling
     # file open / close / write handling
-
-class DirectoryHandler
-  ### philospy & scope ###
+    
+      ### philospy & scope ###
     # all logs should be in the log folder 
     # all this gems logs should be isolated from normal log file
     # all logs for the same class should be in same dir or archive dir in that same dir
@@ -17,11 +16,15 @@ class DirectoryHandler
     # semantic versioning in log header could be a user way of comparing logs 
    ## Handling
       # side effects returning report of location / success / raise errors
-      
+
+class DirectoryHandler
   def self.create_dir(dir_name, *args)
     FileUtils.mkdir_p File.join('log', dir_name)
   end
+end
 
+
+### was env option detection important later
   # @folder = args.first[:folder] 
   # @root = args.first[:the_root] || rails_defined || ruby_defined
 
@@ -36,16 +39,17 @@ class DirectoryHandler
   # def ruby_defined
   #   Dir.getwd
   # end
+###
   
-  # TODO - write a method to put logname at top of file
-#   def self.folder_handler(dir_name = 'benchmarks', log_path = 'log')
-    ## orignal version
-    ## FileUtils.mkdir_p File.join(log_path, dir_name)
-    ## path = File.join(log_path, dir_name)
-    ## if Dir.exists? path
-    ##   path
-    ## else
-    ##   FileUtils.mkdir_p path 
-    ## end
-#   end
-end
+  
+  ## TODO - write a method to put logname at top of file
+  #   def self.folder_handler(dir_name = 'benchmarks', log_path = 'log')
+  ## orignal version
+  ## FileUtils.mkdir_p File.join(log_path, dir_name)
+  ## path = File.join(log_path, dir_name)
+  ## if Dir.exists? path
+  ##   path
+  ## else
+  ##   FileUtils.mkdir_p path 
+  ## end
+  #   end

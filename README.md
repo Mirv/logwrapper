@@ -1,5 +1,7 @@
 # Logwrapper
 
+Rails log file wrapper for handling multiple log files without impacting your
+normal rails logging systems.
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/logwrapper`. To experiment with that code, run `bin/console` for an interactive prompt.
 
 TODO: Delete this and the text above, and describe your gem
@@ -22,7 +24,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Once installed, setup a hash of the class name & the methods.
 
 ## Development
 

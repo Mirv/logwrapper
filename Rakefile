@@ -13,9 +13,7 @@ task :putter do
   puts "-----------------"
   puts "Working from #{Dir.pwd} ..."
   Dir["#{File.dirname(__FILE__)}/lib/**/*.rb"].each { |f| puts load(f) }
-  # puts Dir.pwd
-
-  # Logwrapper.hi
+  Logwrapper.hi
 end
 
 task :default => :test

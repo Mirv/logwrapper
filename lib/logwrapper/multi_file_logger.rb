@@ -1,4 +1,3 @@
-require 'fileutils'
   # Store log files in same folder
   # Initialize new log files, but remember which ones 
   # Generate name base on method / class / size of class
@@ -7,16 +6,6 @@ require 'fileutils'
 class MultiFileLogger
   attr_accessor :logger
   
-  # Accepts new directory name in :folder 
-  def initialize(*args)
-    @folder = args.first[:folder] 
-    @root = args.first[:the_root] || rails_defined || ruby_defined
-    folder_handler   # create folder if necessary
-    # byebug
-    @logger = {}
-  end
-  
-
   def logger(the_method)
     @logger[the_method] ||= log_handler(the_method)
   end
@@ -32,17 +21,6 @@ class MultiFileLogger
     end
   end
 
-  # TODO - write a method to put logname at top of file
-  def self.folder_handler(dir_name = 'benchmarks', log_path = 'log')
-    FileUtils.mkdir_p File.join(log_path, "logwrapper", dir_name)
-    # path = File.join(log_path, dir_name)
-    # if Dir.exists? path
-    #   path
-    # else
-    #   FileUtils.mkdir_p path 
-    # end
-  end
-  
   # Requires format Module::Classname.method(:name) & then it derives file size
   # TODO - integrate this back to the test_run method in other gem
   # TODO - ripper or ruby parse this for size of file without comments counting
@@ -61,18 +39,7 @@ class MultiFileLogger
     counters = models.sum { |x| x.column_names.count }
     return "models: #{models.count}, columns: #{counters}"
   end
-  
-  def from_args
-    args.first[:the_root]
-  end
-  
-  def rails_defined
-    Rails.root if defined?(Rails)
-  end
-  
-  def ruby_defined
-    Dir.getwd
-  end
+
   
 
 end

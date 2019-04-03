@@ -9,7 +9,7 @@ load 'lib/logwrapper/directory_handler.rb'
 class MultiFileLogger
   attr_accessor :logger
   
-  def logger(the_method)
+  def self.logger(the_method)
     @logger[the_method] ||= log_handler(the_method)
   end
 
@@ -37,8 +37,9 @@ class FileNamer
   # TODO - integrate this back to the test_run method in other gem
   # TODO - ripper or ruby parse this for size of file without comments counting
   def self.discover_log_name(the_method)
-    class_name = the_method.class.to_s.split(" ").last.split('.').first
+    method_name = the_method.to_s.split(" ").last.split('.').first
+    class_name = the_method.class
     class_size = File.size(the_method.source_location.first)
-    "#{class_name}_#{the_method}_#{class_size}"
+    "#{class_name}_#{method_name}_#{class_size}"
   end
 end
